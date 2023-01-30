@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scarecrow", "Scarecrow\Scarecrow.csproj", "{34BF4F42-ED2D-4F87-A03D-5C913D68D8AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scarecrow", "src\Scarecrow\Scarecrow.csproj", "{34BF4F42-ED2D-4F87-A03D-5C913D68D8AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitClient", "GitClient\GitClient.csproj", "{A798BDC8-0641-4302-9D70-29595AD99C2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitClient", "src\GitClient\GitClient.csproj", "{A798BDC8-0641-4302-9D70-29595AD99C2F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitClient", "GitClient", "{1098E1E9-6B9C-4839-9FCC-1B0D77D62AD7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitClient", "src\GitClient", "{1098E1E9-6B9C-4839-9FCC-1B0D77D62AD7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validator", "Validator", "{3926398C-FB8A-45E7-A143-F90EF34E4EA5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validator", "src\Validator", "{3926398C-FB8A-45E7-A143-F90EF34E4EA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validator", "Validator\Validator.csproj", "{D018EA76-6355-46D9-98D1-9C89BB341C61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validator", "src\Validator\Validator.csproj", "{D018EA76-6355-46D9-98D1-9C89BB341C61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
