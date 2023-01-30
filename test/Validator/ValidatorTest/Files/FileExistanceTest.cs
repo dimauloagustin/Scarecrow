@@ -5,7 +5,7 @@ using Xunit;
 namespace ValidatorTest {
     public class FileExistanceTest {
         [Fact]
-        public void Should_return_true_if_file_exists() {
+        public async void Should_return_true_if_file_exists() {
             //Arrange
             var mockFs = new MockFileSystem();
             var mockInputFile = new MockFileData("test");
@@ -13,20 +13,20 @@ namespace ValidatorTest {
             var uut = new FileExistance(mockFs, "/test", "/test.txt");
 
             //Act
-            var res = uut.Execute();
+            var res = await uut.Execute();
 
             //Assert
             Assert.True(res);
         }
 
         [Fact]
-        public void Should_return_false_if_file_does_not_exists() {
+        public async void Should_return_false_if_file_does_not_exists() {
             //Arrange
             var mockFs = new MockFileSystem();
             var uut = new FileExistance(mockFs, "/test", "/test.txt");
 
             //Act
-            var res = uut.Execute();
+            var res = await uut.Execute();
 
             //Assert
             Assert.False(res);
