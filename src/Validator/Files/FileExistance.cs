@@ -13,8 +13,8 @@ namespace Validator.Files {
             _path = path;
         }
 
-        public bool Execute() {
-            return _fs.File.Exists(_basePath + _path);
+        public Task<bool> Execute() {
+            return Task.FromResult(_fs.File.Exists(_basePath + _path));
         }
     }
 }
