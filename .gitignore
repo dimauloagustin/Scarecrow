@@ -1,2 +1,5 @@
 ﻿/.vs/Scarecrow
-/Scarecrow/obj
+/**/obj
+/**/bin
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
