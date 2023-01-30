@@ -1,17 +1,20 @@
-﻿using Validator.interfaces;
+﻿using System.IO.Abstractions;
+using Validator.interfaces;
 
 namespace Validator.Files {
     public class FileExistance : IValidation {
-        string _basePath;
-        string _path;
+        readonly IFileSystem _fs;
+        readonly string _basePath;
+        readonly string _path;
 
-        public FileExistance(string basePath, string path) {
+        public FileExistance(IFileSystem fs, string basePath, string path) {
+            _fs = fs;
             _basePath = basePath;
             _path = path;
         }
 
         public bool Execute() {
-            return File.Exists(_basePath + _path);
+            return _fs.File.Exists(_basePath + _path);
         }
     }
 }
