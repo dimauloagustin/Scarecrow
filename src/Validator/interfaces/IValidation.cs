@@ -1,5 +1,5 @@
 ﻿namespace Validator.interfaces {
-    public interface IValidation{
+    public interface IValidation {
         Task<bool> Execute();
     }
 }

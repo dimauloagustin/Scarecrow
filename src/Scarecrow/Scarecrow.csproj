@@ -13,4 +13,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GitClient\GitClient.csproj" />
+    <ProjectReference Include="..\Validator\Validator.csproj" />
+  </ItemGroup>
+
 </Project>
