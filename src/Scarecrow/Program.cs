@@ -1,4 +1,4 @@
-using GitClient.Clients.GitHub;
+using GitClient.Clients.BitBucket;
 using GitClient.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,3 +28,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

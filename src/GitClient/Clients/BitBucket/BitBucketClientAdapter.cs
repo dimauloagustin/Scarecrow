@@ -2,7 +2,7 @@
 using LibGit2Sharp;
 using SharpBucket.V2;
 
-namespace GitClient.Clients.GitHub {
+namespace GitClient.Clients.BitBucket {
     public class BitBucketClientAdapter : IGitClient {
         private readonly string _user;
         private readonly string _password;

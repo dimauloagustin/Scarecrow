@@ -1,4 +1,4 @@
-﻿using GitClient.Clients.GitHub;
+﻿using GitClient.Clients.BitBucket;
 using Scarecrow.Core.Pipe.PipeConfigs;
 using System.Text.Json;
 
