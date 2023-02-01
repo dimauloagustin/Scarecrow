@@ -7,6 +7,8 @@ namespace Scarecrow.Core.Pipe {
         private readonly string[] _repositories;
 
         public Profile(string name, IValidation[] rules, string[] repositories) {
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
+
             Name = name;
             _rules = rules;
             _repositories = repositories;

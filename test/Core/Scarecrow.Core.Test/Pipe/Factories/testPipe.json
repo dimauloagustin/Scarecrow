@@ -1,0 +1,21 @@
+{
+  "repoType": "test",
+  "user": "test",
+  "password": "test",
+  "organization": "test",
+  "profiles": [
+    {
+      "name": "test",
+      "repositories": [ "test1", "test2" ],
+      "rules": [
+        {
+          "name": "test rule",
+          "params": {
+            "p1": "v1",
+            "p2": "v2"
+          }
+        }
+      ]
+    }
+  ]
+}
