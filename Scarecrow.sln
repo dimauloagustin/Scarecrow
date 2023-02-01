@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scarecrow.Core.Test", "test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{A6B7868E-B620-458B-9855-D40CADE0ABA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarecrow.Test", "Scarecrow.Test\Scarecrow.Test.csproj", "{A034A06A-F6A9-4740-BF68-5F4550BDE912}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scarecrow.Test", "test\Scarecrow.Test\Scarecrow.Test.csproj", "{A034A06A-F6A9-4740-BF68-5F4550BDE912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
