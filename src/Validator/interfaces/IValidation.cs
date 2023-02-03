@@ -1,5 +1,7 @@
 ﻿namespace Validator.interfaces {
     public interface IValidation {
-        Task<bool> Execute();
+        static string Type { get; } = "";
+        public string Name { get; }
+        Task<bool> Execute(RepositoryData repo);
     }
 }

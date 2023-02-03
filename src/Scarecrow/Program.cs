@@ -1,11 +1,12 @@
 using GitClient.Clients.BitBucket;
 using GitClient.Interfaces;
+using System.IO.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IGitClient, BitBucketClientAdapter>((_services) => new BitBucketClientAdapter("agustin_di_maulo", "ATBBuwUrNKbSgnZMmRWytxDZXfECA4454D44"));
+builder.Services.AddSingleton<IGitClient, BitBucketClientAdapter>((_services) => new BitBucketClientAdapter("agustin_di_maulo", "ATBBuwUrNKbSgnZMmRWytxDZXfECA4454D44", new FileSystem()));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

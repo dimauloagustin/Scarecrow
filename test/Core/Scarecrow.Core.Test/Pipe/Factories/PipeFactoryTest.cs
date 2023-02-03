@@ -3,6 +3,7 @@ using Moq;
 using Scarecrow.Core.Pipe.Factories;
 using System;
 using System.IO;
+using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace Scarecrow.Core.Test {
             var rulesMapperMock = new Mock<IRulesMapper>();
             var filePath = GetTestDataFolder("Pipe\\Factories\\testPipe.json");
             var json = File.ReadAllText(filePath);
-            var uut = new PipeFactory(rulesMapperMock.Object);
+            var uut = new PipeFactory(rulesMapperMock.Object, new MockFileSystem());
 
             //Act
             var res = uut.CreateFromJson(json);
@@ -28,7 +29,7 @@ namespace Scarecrow.Core.Test {
             var rulesMapperMock = new Mock<IRulesMapper>();
             var filePath = GetTestDataFolder("Pipe\\Factories\\testPipeNoProfileName.json");
             var json = File.ReadAllText(filePath);
-            var uut = new PipeFactory(rulesMapperMock.Object);
+            var uut = new PipeFactory(rulesMapperMock.Object, new MockFileSystem());
 
             //Act
             var res = () => uut.CreateFromJson(json);

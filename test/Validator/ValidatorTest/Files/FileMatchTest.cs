@@ -2,7 +2,7 @@ using System.IO.Abstractions.TestingHelpers;
 using Validator.Files;
 using Xunit;
 
-namespace ValidatorTest {
+namespace ValidatorTest.Files {
     public class FileMatchTest {
         [Fact]
         public async void Should_return_true_if_file_match() {
@@ -10,11 +10,11 @@ namespace ValidatorTest {
             var mockFs = new MockFileSystem();
             var mockInputFile = new MockFileData("test1\ntest2\ntest3");
             mockFs.AddFile("/test/test.txt", mockInputFile);
-            var pattern ="test1\ntest2\ntest3";
-            var uut = new FileMatch(mockFs, "/test", "/test.txt", pattern);
+            var pattern = "test1\ntest2\ntest3";
+            var uut = new FileMatch("test", mockFs, "/test.txt", pattern);
 
             //Act
-            var res = await uut.Execute();
+            var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
             Assert.True(res);
@@ -27,10 +27,10 @@ namespace ValidatorTest {
             var mockInputFile = new MockFileData("test1\ntest2\ntest3");
             mockFs.AddFile("/test/test.txt", mockInputFile);
             var pattern = "test1\ntest2\ntest4";
-            var uut = new FileMatch(mockFs, "/test", "/test.txt", pattern);
+            var uut = new FileMatch("test", mockFs, "/test.txt", pattern);
 
             //Act
-            var res = await uut.Execute();
+            var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
             Assert.False(res);
@@ -41,10 +41,10 @@ namespace ValidatorTest {
             //Arrange
             var mockFs = new MockFileSystem();
             var pattern = "test1\ntest2\ntest4";
-            var uut = new FileMatch(mockFs, "/test", "/test.txt", pattern);
+            var uut = new FileMatch("test", mockFs, "/test.txt", pattern);
 
             //Act
-            var res = await uut.Execute();
+            var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
             Assert.False(res);

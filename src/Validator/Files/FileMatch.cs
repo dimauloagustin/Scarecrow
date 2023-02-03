@@ -3,22 +3,24 @@ using Validator.interfaces;
 
 namespace Validator.Files {
     public class FileMatch : IValidation {
+        public static string Type => nameof(FileMatch);
+
+        public string Name { get; init; }
         readonly IFileSystem _fs;
-        readonly string _basePath;
         readonly string _path;
         readonly string _expected;
 
-        public FileMatch(IFileSystem fs, string basePath, string path, string expected) {
+        public FileMatch(string name, IFileSystem fs, string path, string expected) {
+            Name = name;
             _fs = fs;
-            _basePath = basePath;
             _path = path;
             _expected = expected;
         }
 
-        public async Task<bool> Execute() {
-            if (!_fs.File.Exists(_basePath + _path)) return false;
+        public async Task<bool> Execute(RepositoryData repo) {
+            if (!_fs.File.Exists(repo.Path + _path)) return false;
 
-            var file = await _fs.File.ReadAllTextAsync(_basePath + _path);
+            var file = await _fs.File.ReadAllTextAsync(repo.Path + _path);
             return file == _expected;
         }
     }

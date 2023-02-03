@@ -15,7 +15,7 @@ namespace Scarecrow.Core.Test {
             var uut = new RulesMapper(mockFs, "/test");
 
             //Act
-            var res = uut.Map("FileExistance", new Dictionary<string, string>() { { "path", "test" } });
+            var res = uut.Map("FileExistance", "test", new Dictionary<string, string>() { { "path", "test" } });
 
             //Assert
             Assert.NotNull(res);
@@ -30,7 +30,7 @@ namespace Scarecrow.Core.Test {
             var uut = new RulesMapper(mockFs, "/test");
 
             //Act
-            var res = () => uut.Map("FileMatch", new Dictionary<string, string>());
+            var res = () => uut.Map("FileMatch", "test", new Dictionary<string, string>());
 
             //Assert
             Assert.Throws<ArgumentNullException>(res);

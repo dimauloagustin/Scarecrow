@@ -3,18 +3,20 @@ using Validator.interfaces;
 
 namespace Validator.Files {
     public class FileExistance : IValidation {
+        public static string Type => nameof(FileExistance);
+        public string Name { get; init; }
+
         readonly IFileSystem _fs;
-        readonly string _basePath;
         readonly string _path;
 
-        public FileExistance(IFileSystem fs, string basePath, string path) {
+        public FileExistance(string name, IFileSystem fs, string path) {
+            Name = name;
             _fs = fs;
-            _basePath = basePath;
             _path = path;
         }
 
-        public Task<bool> Execute() {
-            return Task.FromResult(_fs.File.Exists(_basePath + _path));
+        public Task<bool> Execute(RepositoryData repo) {
+            return Task.FromResult(_fs.File.Exists(repo.Path + _path));
         }
     }
 }

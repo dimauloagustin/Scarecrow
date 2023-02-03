@@ -4,19 +4,19 @@ using Validator.interfaces;
 
 namespace Scarecrow.Core.Pipe.Factories {
     public class RulesMapper {
-        private readonly Dictionary<string, Func<Dictionary<string, string>, IValidation>> _mapper;
+        private readonly Dictionary<string, Func<string, Dictionary<string, string>, IValidation>> _mapper;
 
         public RulesMapper(IFileSystem fs, string basePath) {
-            _mapper = new Dictionary<string, Func<Dictionary<string, string>, IValidation>> { //TODO - Improve code
-                { "FileMatch", (p) => new FileMatch(fs, basePath, GetRequiredParam(p,"path","FileMatch"), GetRequiredParam(p,"expected","FileMatch")) },
-                { "FileExistance", (p) => new FileExistance(fs, basePath, GetRequiredParam(p,"path","FileExistance")) }
+            _mapper = new Dictionary<string, Func<string, Dictionary<string, string>, IValidation>> { //TODO - Improve code
+                { "FileMatch", (n,p) => new FileMatch(n,fs, GetRequiredParam(p,"path","FileMatch"), GetRequiredParam(p,"expected","FileMatch")) },
+                { "FileExistance", (n,p) => new FileExistance(n,fs, GetRequiredParam(p,"path","FileExistance")) }
             };
         }
 
-        public IValidation Map(string type, Dictionary<string, string> parameter) {
+        public IValidation Map(string type, string name, Dictionary<string, string> parameter) {
             //TODO - validate type exists
             //TODO - validate params
-            return _mapper[type](parameter);
+            return _mapper[type](name, parameter);
         }
 
         private static string GetRequiredParam(Dictionary<string, string> parameter, string param, string rule) {
