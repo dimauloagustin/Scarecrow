@@ -6,7 +6,7 @@ namespace Scarecrow.Core.Pipe.Factories {
     public class RulesMapper {
         private readonly Dictionary<string, Func<string, Dictionary<string, string>, IValidation>> _mapper;
 
-        public RulesMapper(IFileSystem fs, string basePath) {
+        public RulesMapper(IFileSystem fs) {
             _mapper = new Dictionary<string, Func<string, Dictionary<string, string>, IValidation>> { //TODO - Improve code
                 { "FileMatch", (n,p) => new FileMatch(n,fs, GetRequiredParam(p,"path","FileMatch"), GetRequiredParam(p,"expected","FileMatch")) },
                 { "FileExistance", (n,p) => new FileExistance(n,fs, GetRequiredParam(p,"path","FileExistance")) }

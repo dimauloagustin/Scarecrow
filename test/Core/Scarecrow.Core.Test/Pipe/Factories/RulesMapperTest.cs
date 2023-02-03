@@ -12,7 +12,7 @@ namespace Scarecrow.Core.Test {
             var mockFs = new MockFileSystem();
             var mockInputFile = new MockFileData("test1\ntest2\ntest3");
             mockFs.AddFile("/test/test.txt", mockInputFile);
-            var uut = new RulesMapper(mockFs, "/test");
+            var uut = new RulesMapper(mockFs);
 
             //Act
             var res = uut.Map("FileExistance", "test", new Dictionary<string, string>() { { "path", "test" } });
@@ -27,7 +27,7 @@ namespace Scarecrow.Core.Test {
             var mockFs = new MockFileSystem();
             var mockInputFile = new MockFileData("test1\ntest2\ntest3");
             mockFs.AddFile("/test/test.txt", mockInputFile);
-            var uut = new RulesMapper(mockFs, "/test");
+            var uut = new RulesMapper(mockFs);
 
             //Act
             var res = () => uut.Map("FileMatch", "test", new Dictionary<string, string>());
