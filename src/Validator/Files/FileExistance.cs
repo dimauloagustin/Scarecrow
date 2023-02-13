@@ -3,8 +3,6 @@ using Validator.interfaces;
 
 namespace Validator.Files {
     public class FileExistance : ValidationBase, IValidation {
-        public static new string Type => nameof(FileExistance);
-
         private readonly IFileSystem _fs;
 
         public FileExistance(string name, IFileSystem fs, string path) : base(name, ValidationTypes.FileExistance, path) {
