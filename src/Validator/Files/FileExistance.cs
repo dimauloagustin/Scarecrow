@@ -2,21 +2,22 @@
 using Validator.interfaces;
 
 namespace Validator.Files {
-    public class FileExistance : IValidation {
-        public static string Type => nameof(FileExistance);
-        public string Name { get; init; }
+    public class FileExistance : ValidationBase, IValidation {
+        public static new string Type => nameof(FileExistance);
 
-        readonly IFileSystem _fs;
-        readonly string _path;
+        private readonly IFileSystem _fs;
 
-        public FileExistance(string name, IFileSystem fs, string path) {
-            Name = name;
+        public FileExistance(string name, IFileSystem fs, string path) : base(name, path) {
             _fs = fs;
-            _path = path;
         }
 
-        public Task<bool> Execute(RepositoryData repo) {
-            return Task.FromResult(_fs.File.Exists(repo.Path + _path));
+        public override Task<RuleValidationResult> Execute(RepositoryData repo) {
+
+            bool res = _fs.File.Exists(repo.Path + _path);
+
+            if (!res) return Task.FromResult(CreateResult("File not found in: " + repo.Path + _path));
+
+            return Task.FromResult(CreateResult());
         }
     }
 }

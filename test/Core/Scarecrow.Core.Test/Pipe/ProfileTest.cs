@@ -25,7 +25,7 @@ namespace Scarecrow.Core.Test.Pipe {
 
             //Assert
             Assert.True(res.Length == 1);
-            Assert.True(res[0]);
+            Assert.True(res[0].IsOk);
         }
     }
 }

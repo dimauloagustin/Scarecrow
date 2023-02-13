@@ -1,6 +1,4 @@
-using Moq;
 using System.IO.Abstractions.TestingHelpers;
-using Validator;
 using Validator.Files;
 using Xunit;
 
@@ -18,7 +16,7 @@ namespace ValidatorTest.Files {
             var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
-            Assert.True(res);
+            Assert.True(res.IsOk);
         }
 
         [Fact]
@@ -31,7 +29,7 @@ namespace ValidatorTest.Files {
             var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
-            Assert.False(res);
+            Assert.False(res.IsOk);
         }
     }
 }

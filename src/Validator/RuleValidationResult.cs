@@ -1,13 +1,19 @@
 ﻿namespace Validator {
     public class RuleValidationResult {
-        public string Name { get; private set; }
-        public string Type { get; private set; }
-        public bool IsOk { get; private set; }
+        public string Name { get; init; }
+        public string Type { get; init; }
+        public bool IsOk { get; init; }
+        public List<string>? Errors { get; init; }
 
-        public RuleValidationResult(string name, string type, bool isOk) {
+        public RuleValidationResult(string name, string type, List<string>? errors = null) {
             Name = name;
             Type = type;
-            IsOk = isOk;
+            if (errors == null) {
+                IsOk = true;
+            } else {
+                Errors = errors;
+                IsOk = false;
+            }
         }
     }
 }

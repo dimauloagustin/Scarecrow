@@ -17,7 +17,7 @@ namespace ValidatorTest.Files {
             var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
-            Assert.True(res);
+            Assert.True(res.IsOk);
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace ValidatorTest.Files {
             var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
-            Assert.False(res);
+            Assert.False(res.IsOk);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace ValidatorTest.Files {
             var res = await uut.Execute(RepositoryDataMockHelper.GetMock("/test"));
 
             //Assert
-            Assert.False(res);
+            Assert.False(res.IsOk);
         }
     }
 }

@@ -24,13 +24,13 @@ namespace Scarecrow.Core.Pipe {
             _gitClient = gitClient;
         }
 
-        public async Task<bool[]> ValidateRepo(string repoName) {
+        public async Task<RuleValidationResult[]> ValidateRepo(string repoName) {
             var repo = _repositories.FirstOrDefault(r => r.Name == repoName);
             if (repo == null) throw new ArgumentException("repo: " + repo + " not found in profile");
 
             _gitClient.Clone(repo.Url, repo.Path);
 
-            bool[] res = new bool[_rules.Length];
+            RuleValidationResult[] res = new RuleValidationResult[_rules.Length];
             for (int i = 0; i < _rules.Length; i++) {
                 res[i] = await _rules[i].Execute(repo);
             }

@@ -2,26 +2,25 @@
 using Validator.interfaces;
 
 namespace Validator.Files {
-    public class FileMatch : IValidation {
-        public static string Type => nameof(FileMatch);
+    public class FileMatch : ValidationBase, IValidation {
+        public static new string Type => nameof(FileMatch);
 
-        public string Name { get; init; }
         readonly IFileSystem _fs;
-        readonly string _path;
         readonly string _expected;
 
-        public FileMatch(string name, IFileSystem fs, string path, string expected) {
-            Name = name;
+        public FileMatch(string name, IFileSystem fs, string path, string expected) : base(name, path) {
             _fs = fs;
-            _path = path;
             _expected = expected;
         }
 
-        public async Task<bool> Execute(RepositoryData repo) {
-            if (!_fs.File.Exists(repo.Path + _path)) return false;
+        public override async Task<RuleValidationResult> Execute(RepositoryData repo) {
+            if (!_fs.File.Exists(repo.Path + _path)) return CreateResult("File not found in: " + repo.Path + _path);
 
             var file = await _fs.File.ReadAllTextAsync(repo.Path + _path);
-            return file == _expected;
+
+            if (file != _expected) return CreateResult("File content didn't match");
+
+            return CreateResult();
         }
     }
 }

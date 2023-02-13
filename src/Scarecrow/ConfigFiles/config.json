@@ -1,0 +1,21 @@
+{
+  "repoType": "bitbucket",
+  "user": "agustin_di_maulo",
+  "password": "ATBBuwUrNKbSgnZMmRWytxDZXfECA4454D44",
+  "organization": "pickit_it",
+  "profiles": [
+    {
+      "name": "Sample",
+      "repositories": [ "ms-logisticoperator-rest" ],
+      "rules": [
+        {
+          "name": "test rule",
+          "type": "FileExistance",
+          "params": {
+            "path": "/Dockerfile"
+          }
+        }
+      ]
+    }
+  ]
+}
