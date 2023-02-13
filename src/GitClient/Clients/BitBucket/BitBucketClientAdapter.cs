@@ -14,11 +14,11 @@ namespace GitClient.Clients.BitBucket {
             _fs = fs;
         }
 
-        public Task<List<Models.Repository>> GetRepositories(string organization) {
+        public Task<List<Models.GitRepository>> GetRepositories(string organization) {
             var sharpBucket = new SharpBucketV2();
             sharpBucket.BasicAuthentication(_user, _password);
             var repos = sharpBucket.WorkspacesEndPoint().WorkspaceResource(organization).RepositoriesResource.EnumerateRepositories();
-            return Task.FromResult(repos.Select(r => new Models.Repository(r.name, r.project.name)).ToList());
+            return Task.FromResult(repos.Select(r => new Models.GitRepository(r.name, r.project.name)).ToList());
         }
 
         public void Clone(string repoUrl, string path) {

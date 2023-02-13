@@ -1,10 +1,14 @@
 ﻿namespace Validator {
     public class RepositoryValidationResult {
 
-        private readonly List<RuleValidationResult> _ruleValidationResult = new List<RuleValidationResult>();
+        public List<RuleValidationResult> RuleValidationResults { get; init; }
+
+        public RepositoryValidationResult(List<RuleValidationResult> ruleValidationResult) {
+            RuleValidationResults = ruleValidationResult;
+        }
 
         public bool IsOk() {
-            return !_ruleValidationResult.Any(v => v.IsOk);
+            return !RuleValidationResults.Any(v => v.IsOk);
         }
     }
 }

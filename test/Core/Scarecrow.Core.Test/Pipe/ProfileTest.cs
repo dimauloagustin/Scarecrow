@@ -24,8 +24,8 @@ namespace Scarecrow.Core.Test.Pipe {
             var res = await uut.ValidateRepo("ms-logisticoperator-rest");
 
             //Assert
-            Assert.True(res.Length == 1);
-            Assert.True(res[0].IsOk);
+            Assert.True(res.ValidationResult?.RuleValidationResults.Count == 1);
+            Assert.True(res.ValidationResult?.RuleValidationResults[0].IsOk);
         }
     }
 }

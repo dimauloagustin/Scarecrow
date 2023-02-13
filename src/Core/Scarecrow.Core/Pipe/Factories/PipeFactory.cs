@@ -17,7 +17,7 @@ namespace Scarecrow.Core.Pipe.Factories {
             var config = JsonSerializer.Deserialize<PipeConfig>(json, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             if (config == null) throw new ArgumentException("invalid json");
 
-            var profiles = config.Profiles.Select(p => new Profile(p.Name, p.Rules.Select(r => _rulesMapper.Map(r.Type, r.Params)).ToArray(), p.Repositories, new BitBucketClientAdapter(config.User, config.Password, _fs), config.Organization));
+            var profiles = config.Profiles.Select(p => new Profile(p.Name, p.Rules.Select(r => _rulesMapper.Map(r.Type, r.Name, r.Params)).ToArray(), p.Repositories, new BitBucketClientAdapter(config.User, config.Password, _fs), config.Organization));
 
             //TODO - other types of clients
             return new Pipe(profiles.ToArray());

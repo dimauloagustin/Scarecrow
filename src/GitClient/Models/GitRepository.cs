@@ -1,9 +1,9 @@
 ﻿namespace GitClient.Models{
-    public class Repository {
+    public class GitRepository {
         public string Name { get; set; }
         public string? Project { get; set; }
 
-        public Repository(string name, string? project) {
+        public GitRepository(string name, string? project) {
             Name = name;
             Project = project;
         }

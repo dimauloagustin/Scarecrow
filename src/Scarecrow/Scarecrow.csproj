@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core\Scarecrow.Core\Scarecrow.Core.csproj" />
     <ProjectReference Include="..\GitClient\GitClient.csproj" />
     <ProjectReference Include="..\Validator\Validator.csproj" />
   </ItemGroup>

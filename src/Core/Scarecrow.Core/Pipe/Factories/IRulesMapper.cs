@@ -2,6 +2,6 @@
 
 namespace Scarecrow.Core.Pipe.Factories {
     public interface IRulesMapper {
-        IValidation Map(string type, Dictionary<string, string> parameter);
+        IValidation Map(string type, string name, Dictionary<string, string> parameter);
     }
 }

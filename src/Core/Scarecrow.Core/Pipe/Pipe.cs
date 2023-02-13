@@ -1,10 +1,10 @@
 ﻿namespace Scarecrow.Core.Pipe {
     public class Pipe {
 
-        private readonly Profile[] _profiles;
+        public Profile[] Profiles { get; init; }
 
         public Pipe(Profile[] profiles) {
-            _profiles = profiles;
+            Profiles = profiles;
         }
     }
 }

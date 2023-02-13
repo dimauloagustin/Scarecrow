@@ -3,7 +3,7 @@ using Validator.Files;
 using Validator.interfaces;
 
 namespace Scarecrow.Core.Pipe.Factories {
-    public class RulesMapper {
+    public class RulesMapper : IRulesMapper {
         private readonly Dictionary<string, Func<string, Dictionary<string, string>, IValidation>> _mapper;
 
         public RulesMapper(IFileSystem fs) {

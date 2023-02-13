@@ -3,12 +3,11 @@ using Validator.interfaces;
 
 namespace Validator.Files {
     public class FileMatch : ValidationBase, IValidation {
-        public static new string Type => nameof(FileMatch);
 
         readonly IFileSystem _fs;
         readonly string _expected;
 
-        public FileMatch(string name, IFileSystem fs, string path, string expected) : base(name, path) {
+        public FileMatch(string name, IFileSystem fs, string path, string expected) : base(name, ValidationTypes.FileMatch, path) {
             _fs = fs;
             _expected = expected;
         }

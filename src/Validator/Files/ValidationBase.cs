@@ -2,13 +2,14 @@
 
 namespace Validator.Files {
     public abstract class ValidationBase : IValidation {
-        public static string Type => nameof(ValidationBase);
+        public string Type { get; init; }
         public string Name { get; init; }
 
         protected readonly string _path;
 
-        public ValidationBase(string name, string path) {
+        public ValidationBase(string name, string type, string path) {
             Name = name;
+            Type = type;
             _path = path;
         }
 

@@ -7,7 +7,7 @@ namespace Validator.Files {
 
         private readonly IFileSystem _fs;
 
-        public FileExistance(string name, IFileSystem fs, string path) : base(name, path) {
+        public FileExistance(string name, IFileSystem fs, string path) : base(name, ValidationTypes.FileExistance, path) {
             _fs = fs;
         }
 
