@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IGitClient, BitBucketClientAdapter>((_services) => new BitBucketClientAdapter("agustin_di_maulo", "ATBBuwUrNKbSgnZMmRWytxDZXfECA4454D44", new FileSystem()));
 
-builder.Services.AddSingleton<IFileSystem,FileSystem>();
+builder.Services.AddSingleton<IFileSystem, FileSystem>();
 builder.Services.AddSingleton<IRulesMapper, RulesMapper>();
 builder.Services.AddSingleton<PipeFactory>();
 builder.Services.AddSingleton<Pipe>(s => {
@@ -30,6 +30,8 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors((p) => { p.AllowAnyHeader(); p.AllowAnyMethod(); p.AllowAnyOrigin(); });
 
 app.UseHttpsRedirection();
 
