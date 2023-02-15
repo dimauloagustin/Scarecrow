@@ -30,12 +30,8 @@ namespace Scarecrow.Core.Pipe {
 
             _gitClient.Clone(repo.Url, repo.Path);
 
-            RuleValidationResult[] res = new RuleValidationResult[Rules.Length];
-            for (int i = 0; i < Rules.Length; i++) {
-                res[i] = await Rules[i].Execute(repo);
-            }
+            await repo.ExecuteValidations(Rules);
 
-            repo.SetValidationResult(new RepositoryValidationResult(res.ToList()));
             return repo;
         }
     }
