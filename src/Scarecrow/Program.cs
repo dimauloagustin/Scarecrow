@@ -1,4 +1,5 @@
 using GitClient.Clients.BitBucket;
+using GitClient.Factory;
 using GitClient.Interfaces;
 using Scarecrow.Core.Pipe;
 using Scarecrow.Core.Pipe.Factories;
@@ -12,6 +13,7 @@ builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializ
 builder.Services.AddSingleton<IGitClient, BitBucketClientAdapter>((_services) => new BitBucketClientAdapter("agustin_di_maulo", "ATBBuwUrNKbSgnZMmRWytxDZXfECA4454D44", new FileSystem()));
 
 builder.Services.AddSingleton<IFileSystem, FileSystem>();
+builder.Services.AddSingleton<GitClientFactory>();
 builder.Services.AddSingleton<IRulesMapper, RulesMapper>();
 builder.Services.AddSingleton<PipeFactory>();
 builder.Services.AddSingleton<Pipe>(s => {

@@ -12,7 +12,7 @@ namespace Scarecrow.Test {
         }
 
         [Fact]
-        public async Task Should_return_repositories() {
+        public async Task Should_return_profiles() {
             // Arrange
             var client = _factory.CreateClient();
 
