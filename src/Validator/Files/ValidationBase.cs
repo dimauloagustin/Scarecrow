@@ -7,7 +7,7 @@ namespace Validator.Files {
 
         protected readonly string _path;
 
-        public ValidationBase(string name, string type, string path) {
+        protected ValidationBase(string name, string type, string path) {
             Name = name;
             Type = type;
             _path = path;
