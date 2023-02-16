@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace Scarecrow.Test {
-    public class RepositoryControllerTest
+    public class ProfileRepositoriesControllerTest
     : IClassFixture<WebApplicationFactory<Program>> {
         private readonly WebApplicationFactory<Program> _factory;
 
-        public RepositoryControllerTest(WebApplicationFactory<Program> factory) {
+        public ProfileRepositoriesControllerTest(WebApplicationFactory<Program> factory) {
             _factory = factory;
         }
 
@@ -17,7 +17,7 @@ namespace Scarecrow.Test {
             var client = _factory.CreateClient();
 
             // Act
-            var response = await client.GetAsync("/Repository");
+            var response = await client.GetAsync("/Profiles/Sample/Repositories");
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
