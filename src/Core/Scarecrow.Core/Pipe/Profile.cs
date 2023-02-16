@@ -27,9 +27,7 @@ namespace Scarecrow.Core.Pipe {
         public async Task<RepositoryData> ValidateRepo(string repoName) {
             var repo = Repositories.FirstOrDefault(r => r.Name == repoName);
             if (repo == null) throw new ArgumentException("repo: " + repo + " not found in profile");
-
             _gitClient.Clone(repo.Url, repo.Path);
-
             await repo.ExecuteValidations(Rules);
 
             return repo;

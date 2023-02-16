@@ -3,11 +3,12 @@ using GitClient.Interfaces;
 using Scarecrow.Core.Pipe;
 using Scarecrow.Core.Pipe.Factories;
 using System.IO.Abstractions;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())); ;
 builder.Services.AddSingleton<IGitClient, BitBucketClientAdapter>((_services) => new BitBucketClientAdapter("agustin_di_maulo", "ATBBuwUrNKbSgnZMmRWytxDZXfECA4454D44", new FileSystem()));
 
 builder.Services.AddSingleton<IFileSystem, FileSystem>();

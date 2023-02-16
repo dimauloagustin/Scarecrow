@@ -8,7 +8,7 @@
         }
 
         public bool IsOk() {
-            return !RuleValidationResults.Any(v => v.IsOk);
+            return !RuleValidationResults.Any(v => !v.IsOk);
         }
     }
 }
