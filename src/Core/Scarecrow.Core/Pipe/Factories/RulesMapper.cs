@@ -11,7 +11,7 @@ namespace Scarecrow.Core.Pipe.Factories {
             _mapper = new Dictionary<string, Func<string, Dictionary<string, string>, IValidation>> { //TODO - Improve code
                 { "FileMatch", (n,p) => new FileMatch(n,fs, GetRequiredParam<string>(p,"path"), GetRequiredParam<string>(p,"expected")) },
                 { "FileExistance", (n,p) => new FileExistance(n,fs, GetRequiredParam<string>(p,"path")) },
-                { "FileRegexsMatch", (n,p) => new FileRegexsMatch(n,fs, GetRequiredParam<string>(p,"path"),GetRequiredParam<List<string>>(p,"path")) },
+                { "FileRegexsMatch", (n,p) => new FileRegexsMatch(n,fs, GetRequiredParam<string>(p,"path"),GetRequiredParam<List<string>>(p,"regexs")) },
             };
         }
 
