@@ -2,6 +2,7 @@ using Scarecrow.Core.Pipe.Factories;
 using System;
 using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
+using System.Text.Json;
 using Xunit;
 
 namespace Scarecrow.Core.Test {
@@ -33,7 +34,7 @@ namespace Scarecrow.Core.Test {
             var res = () => uut.Map("FileMatch", "test", new Dictionary<string, string>());
 
             //Assert
-            Assert.Throws<ArgumentNullException>(res);
+            Assert.Throws<ArgumentException>(res);
         }
     }
 }

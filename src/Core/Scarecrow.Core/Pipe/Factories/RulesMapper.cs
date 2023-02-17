@@ -1,4 +1,5 @@
 ﻿using System.IO.Abstractions;
+using System.Text.Json;
 using Validator.Files;
 using Validator.interfaces;
 
@@ -8,21 +9,28 @@ namespace Scarecrow.Core.Pipe.Factories {
 
         public RulesMapper(IFileSystem fs) {
             _mapper = new Dictionary<string, Func<string, Dictionary<string, string>, IValidation>> { //TODO - Improve code
-                { "FileMatch", (n,p) => new FileMatch(n,fs, GetRequiredParam(p,"path","FileMatch"), GetRequiredParam(p,"expected","FileMatch")) },
-                { "FileExistance", (n,p) => new FileExistance(n,fs, GetRequiredParam(p,"path","FileExistance")) }
+                { "FileMatch", (n,p) => new FileMatch(n,fs, GetRequiredParam<string>(p,"path"), GetRequiredParam<string>(p,"expected")) },
+                { "FileExistance", (n,p) => new FileExistance(n,fs, GetRequiredParam<string>(p,"path")) },
+                { "FileRegexsMatch", (n,p) => new FileRegexsMatch(n,fs, GetRequiredParam<string>(p,"path"),GetRequiredParam<List<string>>(p,"path")) },
             };
         }
 
-        public IValidation Map(string type, string name, Dictionary<string, string> parameter) {
-            //TODO - validate type exists
-            //TODO - validate params
-            return _mapper[type](name, parameter);
+        public IValidation Map(string type, string name, Dictionary<string, string> parameters) {
+            try {
+                var map = _mapper.GetValueOrDefault(type);
+                if (map == null) throw new InvalidOperationException("Rule type not found");
+                return map(name, parameters);
+            } catch (ArgumentException ex) {
+                throw new ArgumentException(ex.Message + " - " + type + " - " + name, ex);
+            }
         }
 
-        private static string GetRequiredParam(Dictionary<string, string> parameter, string param, string rule) {
-            //TODO - Validate params
-            if (!parameter.ContainsKey(param)) throw new ArgumentNullException(param + " is required in rule " + rule);
-            return parameter[param];
+        private static T GetRequiredParam<T>(Dictionary<string, string> parameter, string paramName) {
+            var param = parameter.GetValueOrDefault(paramName);
+            if (param == null) throw new ArgumentException(paramName + " is required");
+
+            if (typeof(T) == typeof(string)) return (T)(object)param;
+            return JsonSerializer.Deserialize<T>(param);
         }
     }
 }
