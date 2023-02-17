@@ -30,7 +30,7 @@ namespace Scarecrow.Core.Pipe.Factories {
             if (param == null) throw new ArgumentException(paramName + " is required");
 
             if (typeof(T) == typeof(string)) return (T)(object)param;
-            return JsonSerializer.Deserialize<T>(param);
+            return JsonSerializer.Deserialize<T>(param) ?? throw new ArgumentNullException(paramName);
         }
     }
 }
