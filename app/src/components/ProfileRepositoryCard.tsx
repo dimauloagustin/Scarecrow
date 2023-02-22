@@ -12,7 +12,7 @@ export default function ProfileRepositoryCardResponse({ profileName, repository 
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275 }} style={{display:"flex", flexDirection:"column", height:"100%"}}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Repository
@@ -32,7 +32,7 @@ export default function ProfileRepositoryCardResponse({ profileName, repository 
           )}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions style={{marginTop:"auto"}}>
         <Button size="small" onClick={() => navigate(repository.name)}>
           Details
         </Button>

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
-using System.Text.Json;
+using Validator.interfaces;
 using Xunit;
 
 namespace Scarecrow.Core.Test {
@@ -15,7 +15,11 @@ namespace Scarecrow.Core.Test {
         [Fact]
         public void Should_return_pipe() {
             //Arrange
+            var ruleMock = new Mock<IValidation>();
+            ruleMock.SetupGet(r => r.Name).Returns("test");
             var rulesMapperMock = new Mock<IRulesMapper>();
+            rulesMapperMock.Setup(s => s.Map("test", "test rule", It.Is<Dictionary<string, string>>(v => v.GetValueOrDefault("p2") == "[ \"v2\", \"v3\" ]")))
+                .Returns(ruleMock.Object);
             var filePath = GetTestDataFolder("Pipe\\Factories\\testPipe.json");
             var json = File.ReadAllText(filePath);
             var uut = new PipeFactory(rulesMapperMock.Object, new Mock<GitClientFactory>(new MockFileSystem()).Object);

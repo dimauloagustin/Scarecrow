@@ -23,7 +23,7 @@ export default function ProfileRepositories() {
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {repositories !== undefined
           ? repositories.map((r, index) => (
-              <Grid key={index}>
+              <Grid key={index} xs={4} sm={4} md={3}>
                 <ProfileRepositoryCardResponse profileName={id! /* TODO - better way to check param exists */} repository={r} />
               </Grid>
             ))

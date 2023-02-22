@@ -19,4 +19,10 @@
 		<ProjectReference Include="..\Validator\Validator.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Update="ConfigFiles\config.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
 </Project>

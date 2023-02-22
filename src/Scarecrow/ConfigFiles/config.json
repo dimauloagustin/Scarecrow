@@ -6,7 +6,11 @@
   "profiles": [
     {
       "name": "Sample",
-      "repositories": [ "ms-logisticoperator-rest" ],
+      "repositories": [
+        "ms-logisticoperator-rest",
+        "ms-oauth",
+        "ms-prebilling-rest"
+      ],
       "rules": [
         {
           "name": "test rule",

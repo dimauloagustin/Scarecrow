@@ -10,7 +10,7 @@ namespace Validator.Files {
 
         public FileRegexsMatch(string name, IFileSystem fs, string path, List<string> regexs) : base(name, ValidationTypes.FileRegexsMatch, path) {
             _fs = fs;
-            _regexs = regexs.Select(r => new Regex(r)).ToList();
+            _regexs = regexs.Select(r => new Regex(r, RegexOptions.None, TimeSpan.FromSeconds(10))).ToList();
         }
 
         public override async Task<RuleValidationResult> Execute(RepositoryData repo) {
