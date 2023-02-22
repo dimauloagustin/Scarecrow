@@ -5,7 +5,7 @@ namespace Scarecrow.Responses {
         public string Name { get; set; }
         public string? Project { get; set; }
 
-        public RepositoryResponse(Repository repo) {
+        public RepositoryResponse(GitRepository repo) {
             Name = repo.Name;
             Project = repo.Project;
         }

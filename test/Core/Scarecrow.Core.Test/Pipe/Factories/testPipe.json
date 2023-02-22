@@ -10,9 +10,10 @@
       "rules": [
         {
           "name": "test rule",
+          "type": "test",
           "params": {
             "p1": "v1",
-            "p2": "v2"
+            "p2": "[ \"v2\", \"v3\" ]"
           }
         }
       ]

@@ -1,0 +1,55 @@
+<%
+const { routeInfo, utils } = it;
+const {
+  operationId,
+  method,
+  route,
+  moduleName,
+  responsesTypes,
+  description,
+  tags,
+  summary,
+  pathArgs,
+} = routeInfo;
+const { _, fmtToJSDocLine, require } = utils;
+
+const methodAliases = {
+  get: (suffix) => _.camelCase(`get${suffix}`),
+  post: (suffix) => _.camelCase(`post${suffix}`),
+  put: (suffix) => _.camelCase(`put${suffix}`),
+  patch: (suffix) => _.camelCase(`patch${suffix}`),
+  delete: (suffix) => _.camelCase(`delete${suffix}`),
+};
+
+const createCustomOperationId = (method, route, moduleName) => {
+    console.log(`=== ${method} ${route} ${moduleName}`);
+  let splitedRouteBySlash = _.compact(_.replace(route, /\{(\w){1,}\}/g, "").split("/"));
+    console.log(`splitedRouteBySlash: ${splitedRouteBySlash}`);
+  let routeParts = (splitedRouteBySlash.length > 1
+    ? [splitedRouteBySlash.slice(-1)[0]]
+    : splitedRouteBySlash
+  ).join("_");
+    console.log(`routeParts: ${routeParts}`);
+  let suffix = moduleName.toLowerCase().includes(routeParts.toLowerCase()) ? '' : routeParts;
+    console.log(`suffix: ${suffix}`);
+  
+  splitedRouteByKeys = _.compact(_.replace(route, /\/([^{]*)/g, "").split("/"));
+    console.log(`splitedRouteByKeys: ${splitedRouteByKeys}`);
+  splitedRouteBySlash = _.compact(_.replace(splitedRouteByKeys, /(\{|\})+/g, "/").split("/"));
+    console.log(`splitedRouteBySlash: ${splitedRouteBySlash}`);
+  routeParts = splitedRouteBySlash.join("_");
+    console.log(`routeParts: ${routeParts}`);
+  suffix = suffix + (routeParts !== '' ? 'By_' + routeParts : '');
+    console.log(`suffix: ${suffix}`);
+  return methodAliases[method]
+    ? methodAliases[method](suffix)
+    : _.camelCase(_.lowerCase(method) + "_" + [moduleName].join("_")) || "index";
+};
+
+if (operationId)
+  return _.camelCase(operationId);
+if (route === "/")
+  return _.camelCase(`${_.lowerCase(method)}Root`);
+
+return createCustomOperationId(method, route, moduleName);
+%>

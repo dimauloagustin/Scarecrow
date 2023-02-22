@@ -1,14 +1,10 @@
-﻿using GitClient.Interfaces;
-
-namespace Scarecrow.Core.Pipe {
+﻿namespace Scarecrow.Core.Pipe {
     public class Pipe {
 
-        private readonly IGitClient _gitClient;
-        private readonly Profile[] _profiles;
+        public Profile[] Profiles { get; init; }
 
-        public Pipe(IGitClient gitClient, Profile[] profiles) {
-            _gitClient = gitClient;
-            _profiles = profiles;
+        public Pipe(Profile[] profiles) {
+            Profiles = profiles;
         }
     }
 }

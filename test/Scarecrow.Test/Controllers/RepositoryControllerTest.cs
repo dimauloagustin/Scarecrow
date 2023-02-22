@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace Scarecrow.Test {
-    public class ScarecrowTest
+    public class RepositoryControllerTest
     : IClassFixture<WebApplicationFactory<Program>> {
         private readonly WebApplicationFactory<Program> _factory;
 
-        public ScarecrowTest(WebApplicationFactory<Program> factory) {
+        public RepositoryControllerTest(WebApplicationFactory<Program> factory) {
             _factory = factory;
         }
 
